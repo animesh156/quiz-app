@@ -11,7 +11,7 @@ const quizRoute = require('./routes/quizRoute')
 const scoreRoute = require('./routes/scoreRoute')
 connectDB()
 app.use(cors({
-       origin: 'https://quiz-app-frontend-blush.vercel.app/login' // Allow requests from this specific origin
+       origin: 'https://quiz-app-frontend-blush.vercel.app' // Allow requests from this specific origin
    }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
