@@ -17,24 +17,24 @@ function Header() {
   return (
     <header className='header'>
      <div className='logo'>
-        <Link to='/' className='dark:text-yellow-400'>Dashboard</Link>
+        <Link to='/' className='text-yellow-400'>Dashboard</Link>
       </div>
       <ul>
         {user ? (
           <li>
-            <button className='btn dark:text-red-700' onClick={onLogout} >
+            <button className='btn text-red-700' onClick={onLogout} >
               <FaSignOutAlt /> Logout
             </button>
           </li>
         ) : (
           <>
             <li >
-              <Link to='/login' className='dark:text-cyan-500 dark:hover:text-cyan-400'>
+              <Link to='/login' className='text-cyan-500 :hover:text-cyan-400'>
                 <FaSignInAlt /> Login
               </Link>
             </li>
             <li >
-              <Link to='/register' className='dark:text-rose-600 dark:hover:text-rose-500'>
+              <Link to='/register' className='text-rose-600 hover:text-rose-500'>
                 <FaUser /> Register
               </Link>
             </li>

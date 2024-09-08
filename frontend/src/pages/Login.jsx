@@ -94,7 +94,7 @@ function Login() {
           </div>
 
           <div>
-           <p className='text-white dark:text-cyan-300 text-1xl'>New User ? <Link to='/register' className='text-white dark:text-pink-600'>Sign Up</Link></p> 
+           <p className='font-semibold dark:text-cyan-300 text-1xl'>New User ? <Link to='/register' className='text-pink-600'>Sign Up</Link></p> 
           </div>
         </form>
       </section>
