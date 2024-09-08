@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-const registerRoute = "http://localhost:4000/user/register"
+const registerRoute = "https://quiz-app-backend-black.vercel.app/user/register"
 
-const loginRoute =    "http://localhost:4000/user/login"
+const loginRoute =    "https://quiz-app-backend-black.vercel.app/user/login"
 
 
 // Register user
