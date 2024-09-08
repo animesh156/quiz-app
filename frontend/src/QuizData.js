@@ -20,7 +20,7 @@ const amount = localStorage.getItem('total')
 const diff = localStorage.getItem('diff')
 const catg = localStorage.getItem('catg')
   try {
-    const response = await axios.get(`http://localhost:4000/quiz?amount=${JSON.parse(amount)}&category=${JSON.parse(catg)}&difficulty=${diff}&type=${type}`, {
+    const response = await axios.get(`https://quiz-app-backend-black.vercel.app/quiz?amount=${JSON.parse(amount)}&category=${JSON.parse(catg)}&difficulty=${diff}&type=${type}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
