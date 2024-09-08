@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import {setCategory, setDifficulty, setTotalQuestions, setType} from '../features/quizSlice'
 
 import Spinner from '../components/Spinner'
 
@@ -12,10 +13,7 @@ function Dashboard() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const [totalQuestion,setTotalQuestion] = useState(5)
-  const [category, setCategory] = useState(17)
-  const [type, setIsType] = useState('multiple')
-  const [difficulty,setIsDifficulty] = useState('easy')
+ 
 
 
   const { user, isLoading, isError, message } = useSelector((state) => state.auth)
@@ -46,11 +44,8 @@ function Dashboard() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-      console.log(category)
-      localStorage.setItem('type',type)
-      localStorage.setItem('total',totalQuestion)
-      localStorage.setItem('diff',difficulty)
-      localStorage.setItem('catg',category)
+      
+      
     
     navigate('/quiz')
    
@@ -76,7 +71,7 @@ function Dashboard() {
   Category
 </label>
 <select
-  id="small" onChange={(e) => setCategory(e.target.value)}
+  id="small" onChange={(e) => dispatch(setCategory(e.target.value))}
   className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 >
  
@@ -98,7 +93,7 @@ function Dashboard() {
 </label>
 <select
   id="small"
-  onChange={(e) => setIsDifficulty(e.target.value)}
+  onChange={(e) => dispatch(setDifficulty(e.target.value))}
   className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 >
  
@@ -116,7 +111,7 @@ function Dashboard() {
 </label>
 <select
   id="small"
-  onChange={(e) => setTotalQuestion(e.target.value)}
+  onChange={(e) => dispatch(setTotalQuestions(e.target.value))}
   className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 >
 
@@ -134,7 +129,7 @@ function Dashboard() {
 </label>
 <select
   id="small"
-  onChange={(e) => setIsType(e.target.value)}
+  onChange={(e) => dispatch(setType(e.target.value))}
   className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 >
 
