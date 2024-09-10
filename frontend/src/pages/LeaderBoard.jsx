@@ -6,15 +6,12 @@ import Spinner from '../components/Spinner'
 function LeaderBoard() {
   const [userScores, setUserScores] = useState([])
   const [loading,setLoading] = useState(true)
-  fetch()
-  .then(res => res.json())
-  .then(data => setUserScores(data))
-  .catch(err => console.log(err))
+
 
   useEffect(() => {
     const getUserScore = async () => {
       try{
-        const response = await axios.get('http://localhost:4000/leaderboard')
+        const response = await axios.get('https://quiz-app-backend-black.vercel.app/leaderboard')
         if(!response.data) throw new Error('client error')
           setUserScores(response.data)
         setLoading(false)
