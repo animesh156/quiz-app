@@ -9,6 +9,7 @@ const connectDB = require('./config/db')
 const userRoutes = require('./routes/userRoutes')
 const quizRoute = require('./routes/quizRoute')
 const scoreRoute = require('./routes/scoreRoute')
+const leaderBoardRoute = require('./routes/leaderBoardRoute')
 connectDB()
 app.use(cors({
        origin: 'https://quiz-app-frontend-blush.vercel.app', 
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/quiz',protect,quizRoute)
 app.use('/user', userRoutes)
 app.use('/score',protect,scoreRoute)
+app.use('/leaderboard', leaderBoardRoute)
 app.listen(port, () => { 
     console.log(`server started at ${port}`)
 })
