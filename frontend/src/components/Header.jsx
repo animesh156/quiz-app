@@ -1,11 +1,13 @@
 import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
+
 
 function Header() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const location = useLocation()
   const { user } = useSelector((state) => state.auth)
 
   const onLogout = () => {
@@ -17,7 +19,11 @@ function Header() {
   return (
     <header className='header'>
      <div className='logo'>
-        <p className='text-yellow-400'>Quiz App</p>
+        {location.pathname === '/leaderBoard' ? (  <Link to='/' className='text-yellow-400'>DashBoard</Link>) : (
+            <Link to='/leaderBoard' className='text-yellow-400'>LeaderBoard</Link>
+        )
+       
+        }
       </div>
       <ul>
         {user ? (
