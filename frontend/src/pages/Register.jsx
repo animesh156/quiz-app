@@ -10,8 +10,7 @@ function Register() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    password: '',
-  
+    password: ''
   })
 
   const { name, email, password } = formData
@@ -25,6 +24,7 @@ function Register() {
 
   useEffect(() => {
     if (isError) {
+      console.log(message)
       toast.error(message)
     }
 
@@ -63,18 +63,18 @@ function Register() {
   return (
     <>
       <section className='heading'>
-        <h1 className='dark:text-indigo-800 font-serif' >
+        <h1 className='dark:text-pink-500 text-3xl font-bold mb-4' >
           Register
         </h1>
-        <p className='dark:text-yellow-500 font-mono'>Please create an account</p>
+     
       </section>
 
-      <section className='form '>
+      <section className='form border-2 border-red-500 px-5 dark:bg-zinc-950 md:max-w-sm py-12 shadow-md shadow-rose-400 rounded-2xl'>
         <form onSubmit={onSubmit}>
           <div className='form-group'>
             <input
               type='text'
-              className='form-control'
+              className='form-control dark:bg-black dark:text-white rounded-3xl dark:caret-white mb-8'
               id='name'
               name='name'
               value={name}
@@ -85,7 +85,7 @@ function Register() {
           <div className='form-group'>
             <input
               type='email'
-              className='form-control'
+              className='form-control dark:bg-black dark:text-white rounded-3xl dark:caret-white mb-8'
               id='email'
               name='email'
               value={email}
@@ -96,7 +96,7 @@ function Register() {
           <div className='form-group'>
             <input
               type='password'
-              className='form-control'
+              className='form-control dark:bg-black dark:text-white rounded-3xl dark:caret-white mb-8'
               id='password'
               name='password'
               value={password}
@@ -106,11 +106,11 @@ function Register() {
           </div>
          
           <div className='form-group'>
-          <button type="submit" className="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Sign Up</button>
+          <button type="submit" className="font-bold bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800  rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Sign Up</button>
           </div>
 
           <div>
-           <p className='text-black font-semibold text-1xl dark:text-cyan-300'>Already have an account ? <Link to='/login' className='text-orange-500'>Login</Link></p> 
+           <p className='text-black font-semibold text-1xl dark:text-cyan-300'>Already have an account ? <Link to='/login' className='text-orange-500 font-extrabold '>LogIn</Link></p> 
           </div>
         </form>
       </section>
