@@ -30,7 +30,7 @@ const Quiz = () => {
     setIsQuizFinished(true);
   setUserScore(score);
   };
- 
+
   // Fetch quiz data when the component mounts
   useEffect(() => {
     const getQuizData = async () => {
@@ -129,6 +129,8 @@ const Quiz = () => {
   const user = localStorage.getItem('user')
   const userid = JSON.parse(user)._id
   const userName = JSON.parse(user).name
+
+  // add user score to database
 
 const setUserScore = async(score) => {
   try {
