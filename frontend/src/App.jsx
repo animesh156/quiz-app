@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import LeaderBoard from "./pages/LeaderBoard"
 
 import Quiz from "./pages/Quiz";
 
@@ -20,6 +21,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/quiz" element={<Quiz  />} />
+            <Route path="/leaderBoard" element={<LeaderBoard  />} />
           
           </Routes>
         </div>

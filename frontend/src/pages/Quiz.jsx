@@ -1,19 +1,24 @@
 /* eslint-disable react/prop-types */
 import  { useState, useEffect } from 'react';
-import { fetchQuizQuestions } from '../QuizData';
+import { useSelector } from 'react-redux';
 import Result from '../components/Result'
 import Spinner from '../components/Spinner';
 import axios from 'axios';
 
 
 
-const Quiz = ({type,difficulty,totalQuestions}) => {
+const Quiz = () => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
   const [timer, setTimer] = useState(15);
-  
+
+
+   const category = useSelector((state) => state.quizOptions.category);
+  const difficulty = useSelector((state) => state.quizOptions.difficulty);
+  const totalQuestion = useSelector((state) => state.quizOptions.totalQuestion);
+  const type = useSelector((state) => state.quizOptions.type);
 
 
   // Shuffle function for the answers
@@ -25,12 +30,20 @@ const Quiz = ({type,difficulty,totalQuestions}) => {
     setIsQuizFinished(true);
   setUserScore(score);
   };
-
+ 
   // Fetch quiz data when the component mounts
   useEffect(() => {
     const getQuizData = async () => {
       try {
-        const quizQuestions = await fetchQuizQuestions({type,difficulty,totalQuestions});
+        const response =  await axios.get(`http://localhost:4000/quiz?amount=${totalQuestion}&category=${category}&difficulty=${difficulty}&type=${type}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+        if(!response.data) throw new Error('client error')
+          
+        const quizQuestions = response.data.results
+       
 
         if (quizQuestions && Array.isArray(quizQuestions)) {
           const formattedQuestions = quizQuestions.map((question) => {
@@ -45,6 +58,7 @@ const Quiz = ({type,difficulty,totalQuestions}) => {
         } else {
           console.error("Quiz data is not in the expected format.");
         }
+
       } catch (err) {
         console.error("Error fetching quiz data:", err);
       }

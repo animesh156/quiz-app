@@ -60,15 +60,15 @@ function Login() {
     <>
       
         
-        <h1 className='text-3xl font-bold mb-7 dark:text-rose-500 mt-28'>Login & start playing quiz</h1>
+        <h1 className='text-3xl font-bold mb-7 dark:text-rose-500 mt-16'>Login & Start playing quiz</h1>
      
 
-      <section className='form mt-28'>
+      <section className='form mt-28 border-2 border-sky-500 shadow-md shadow-cyan-200 md:max-w-sm px-5 dark:bg-zinc-950 py-12 rounded-3xl'>
         <form onSubmit={onSubmit}>
           <div className='form-group'>
             <input
               type='email'
-              className='form-control'
+              className='form-control dark:bg-black rounded-3xl dark:text-white dark:caret-white mb-8'
               id='email'
               name='email'
               value={email}
@@ -79,7 +79,7 @@ function Login() {
           <div className='form-group'>
             <input
               type='password'
-              className='form-control'
+              className='form-control dark:bg-black rounded-3xl dark:text-white dark:caret-white mb-8'
               id='password'
               name='password'
               value={password}
@@ -90,7 +90,7 @@ function Login() {
 
           <div className='form-group'>
             
-            <button type="submit" className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Login</button>
+            <button type="submit" className=" bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-bold rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Login</button>
           </div>
 
           <div>

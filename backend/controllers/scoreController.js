@@ -3,12 +3,7 @@ const asyncHandler = require('express-async-handler')
 const Score = require('../model/scoreModel')
 const User = require('../model/userModel')
 
-const getScore = asyncHandler(async (req,res) => {
-        const scores = await Score.find({user: req.user.id})
-       
-         res.status(200).json(scores)
-    }
-)
+
 
 const addScore = asyncHandler(
     async (req,res) => {
@@ -42,7 +37,7 @@ const addScore = asyncHandler(
 
 
 module.exports = {
-    getScore,
+   
     addScore,
  
 }

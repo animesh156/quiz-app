@@ -9,6 +9,8 @@ const loginRoute =    "http://localhost:4000/user/login"
 const register = async (userData) => {
   const response = await axios.post(registerRoute, userData)
 
+ 
+
   if (response.data) {
     localStorage.setItem('user', JSON.stringify(response.data))
   }
