@@ -34,7 +34,7 @@ if(loading) return <Spinner />
     <div  className="m-auto mt-8  h-96  dark:text-orange-400 overflow-y-auto ">
 
     {userScores.map((user,index) => (
-      <li key={index} className="mb-4 mt-4 md:max-w-lg m-auto  flex justify-around gap-8 items-center rounded-full border-2 border-slate-50 py-3 text-center dark:bg-black dark:text-orange-500">
+      <li key={index} className="mb-4 mt-4 md:max-w-lg m-auto  flex justify-around gap-8 items-center rounded-full border-2 border-black py-3 text-center dark:bg-black dark:text-orange-500">
       
       <div className='flex flex-row items-center grow-0' >
       <div className="w-9 rounded-full bg-slate-100 font-bold dark:bg-slate-900 text-center grow-0">
