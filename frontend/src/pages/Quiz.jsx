@@ -35,7 +35,7 @@ const Quiz = () => {
   useEffect(() => {
     const getQuizData = async () => {
       try {
-        const response =  await axios.get(`http://localhost:4000/quiz?amount=${totalQuestion}&category=${category}&difficulty=${difficulty}&type=${type}`, {
+        const response =  await axios.get(`https://quiz-app-backend-black.vercel.app/quiz?amount=${totalQuestion}&category=${category}&difficulty=${difficulty}&type=${type}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }

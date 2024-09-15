@@ -48,9 +48,9 @@ function Dashboard() {
 
   return (
     <>
-      <section className="heading">
+      <section className="heading mb-5">
         <h1 className="text-3xl dark:text-rose-700">
-          Welcome {user && user.name}
+          Welcome <span className="font-bold uppercase">{user && user.name}</span>
         </h1>
       </section>
 
@@ -62,7 +62,7 @@ function Dashboard() {
         {/* Category */}
         <label
           htmlFor="small"
-          className="block mb-2 text-sm  text-gray-900 dark:text-orange-400 font-semibold font-mono"
+          className="block mb-2 text-md  text-gray-900 dark:text-orange-400 font-bold"
         >
           Category
         </label>
@@ -87,7 +87,7 @@ function Dashboard() {
 
         <label
           htmlFor="small"
-          className="block mb-2 text-sm font-mono text-gray-900 dark:text-orange-400 font-semibold"
+          className="block mb-2 text-sm  text-gray-900 dark:text-orange-400 font-bold"
         >
           Difficulty
         </label>
@@ -103,7 +103,7 @@ function Dashboard() {
 
         <label
           htmlFor="small"
-          className="block mb-2 text-sm font-semibold font-mono  text-gray-900 dark:text-orange-400"
+          className="block mb-2 text-sm font-bold   text-gray-900 dark:text-orange-400"
         >
           Total Question
         </label>
@@ -120,7 +120,7 @@ function Dashboard() {
 
         <label
           htmlFor="small"
-          className="block mb-2 text-sm font-semibold font-mono text-gray-900 dark:text-orange-400"
+          className="block mb-2 text-sm font-bold  text-gray-900 dark:text-orange-400"
         >
           Type
         </label>

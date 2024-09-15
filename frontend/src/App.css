@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalnia+Glaze:wght@600&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}  
+
+span {
+  font-family: "Kalnia Glaze";
 }
 
 body {
@@ -53,9 +58,9 @@ h3 {
 }
 
 option {
-  color:rgb(243, 220, 15);
-  font-family: serif;
-  font-weight: bolder;
+  color:rgb(32, 32, 31);
+  
+  font-weight:700;
 }
 
 .header ul {
