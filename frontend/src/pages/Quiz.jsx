@@ -134,7 +134,7 @@ const Quiz = () => {
 
 const setUserScore = async(score) => {
   try {
-    const res = await axios.post('http://localhost:4000/score', {score,userid,userName}, {headers: {
+    const res = await axios.post('https://quiz-app-backend-black.vercel.app/score', {score,userid,userName}, {headers: {
      'Authorization': `Bearer ${token}`
    }})
       if(res.data) return true
