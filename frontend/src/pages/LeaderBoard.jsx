@@ -32,12 +32,12 @@ if(loading) return <Spinner />
       <p className="text-center text-2xl font-extrabold">LeaderBoard</p>
     </div>
    
-    <div  className="m-auto mt-8  h-96  dark:text-orange-400 overflow-y-auto ">
+    <div  className="m-auto mt-8 w-auto h-96   px-2 dark:text-orange-400  ">
 
     {userScores.map((user,index) => (
-     <li key={index} className="mb-4 mt-4 md:max-w-lg m-auto flex justify-around  items-center  rounded-xl border-2 border-black py-3 text-center bg-zinc-100 dark:bg-black dark:text-orange-500">
+     <li key={index} className="mb-4 mt-8   m-auto flex justify-around  items-center  rounded-xl border-2 border-black py-3 text-center bg-zinc-100 dark:bg-black dark:text-orange-500">
   
-     <div className="flex flex-row items-center justify-evenly flex-shrink-0 gap-x-2  ">
+     <div className="flex flex-row items-center  flex-shrink-0 gap-x-1 ">
        <div className="w-9 rounded-full bg-cyan-200 font-bold dark:bg-slate-900 text-center flex-shrink-0 flex-grow-0">
          {index + 1}
        </div>
@@ -53,11 +53,11 @@ if(loading) return <Spinner />
 
      </div>
      
-     <div className="text-1xl font-bold flex-shrink-0 max-w-60 w-52  text-center">
+     <div className="text-1xl font-bold flex-shrink-0   text-center">
        {user.userName}
      </div>
      
-     <div className="max-w-md w-20 rounded-2xl  border-2 border-black bg-cyan-100 font-bold dark:bg-slate-900 ml-3 flex-shrink-0  text-center">
+     <div className=" w-14 rounded-2xl  border-2 border-black bg-cyan-100 font-bold dark:bg-slate-900  flex-shrink-0  text-center">
        {user.score}
      </div>
    </li>
