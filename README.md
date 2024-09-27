@@ -4,7 +4,7 @@ The app allows users to take quizzes by fetching questions from a public trivia 
 </p> 
 
 <br>
-![Screenshot (77)](https://github.com/user-attachments/assets/0d548835-e9a8-4acc-90b5-f4f1b6d674b3)
+
 
 
 
