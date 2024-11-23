@@ -8,7 +8,7 @@ const User = require('../model/userModel')
 const addScore = asyncHandler(
     async (req,res) => {
 
-        const { user, score } = req.body;
+        const { user, score, quizCount } = req.body;
 
         try {
           const updatedScore = await Score.findOneAndUpdate(
