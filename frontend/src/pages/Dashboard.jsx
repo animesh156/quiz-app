@@ -48,14 +48,14 @@ function Dashboard() {
 
   return (
     <>
-      <section className="heading mb-5">
-        <h1 className="text-3xl dark:text-rose-700">
+      <section className="heading mb-5 mt-3">
+        <h1 className="text-3xl text-center dark:text-rose-700">
           Welcome <span className="font-bold uppercase">{user && user.name}</span>
         </h1>
       </section>
 
       <form
-        className="max-w-md mx-auto border-cyan-300 border-2 px-5 py-3 rounded-2xl shadow-md shadow-pink-400"
+        className="max-w-md mx-auto text-center border-cyan-300 border-2 px-5 py-3 rounded-2xl shadow-md shadow-pink-400"
         onSubmit={onSubmit}
       >
 

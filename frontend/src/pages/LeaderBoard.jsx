@@ -38,10 +38,10 @@ function LeaderBoard() {
       <p className="text-center text-2xl font-extrabold">LeaderBoard</p>
     </div>
    
-    <div  className="m-auto mt-8 w-auto h-96   px-2 dark:text-orange-400  ">
+    <div  className="m-auto mt-8 md:max-w-3xl h-96   px-2 dark:text-orange-400  ">
 
     {userScores.map((user,index) => (
-     <li key={index} className="mb-4 mt-8   m-auto flex justify-evenly  items-center  rounded-xl border-2 border-black py-3 text-center bg-zinc-100 dark:bg-black dark:text-orange-500">
+     <li key={index} className="mb-4 mt-8   m-auto flex justify-evenly  items-center  rounded-xl border-2 border-black py-2 text-center bg-zinc-100 dark:bg-black dark:text-orange-500">
   
      <div className="flex flex-row items-center basis-1/4  flex-shrink-0 gap-x-1 ">
        <div className="w-9 rounded-full bg-cyan-200 font-bold dark:bg-slate-900 text-center flex-shrink-0 flex-grow-0">

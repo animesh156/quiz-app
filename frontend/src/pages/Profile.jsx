@@ -29,7 +29,7 @@ function Profile() {
       <img src={avatar} alt="" className='w-48' />
     </div>
 
-    <h4>{userName}</h4>
+    <h4 className='text-3xl dark:text-pink-500 font-bold'>{userName}</h4>
     
     <button
       type="button"

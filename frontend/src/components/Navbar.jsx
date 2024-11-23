@@ -7,16 +7,24 @@ const Navbar = () => {
 
   const { user } = useSelector((state) => state.auth);
 
+  const storedUser = localStorage.getItem("user");
+  const parsedUser = storedUser ? JSON.parse(storedUser) : null;
+
+ 
+ 
+  const avatar = user?.avatar || parsedUser?.avatar || "/default-avatar.png"; // Use a default avatar if none is provided
+
 
   if(!user) return <></>
-
+ 
   return (
-    <nav className="bg-blue-600 text-white">
+    <nav className=" dark:bg-gray-600 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
-           <img src="/default.png"  alt="avatar_img" className="w-11" />
+          <div >
+           <img src={avatar}  alt="avatar_img" className="w-11" />
+          
           </div>
           {/* Hamburger Menu */}
           <div className="md:hidden">
@@ -51,13 +59,13 @@ const Navbar = () => {
           </div>
           {/* Full Menu */}
           <div className="hidden md:flex space-x-4">
-            <Link to='/' className="hover:bg-blue-700 px-3 py-2 rounded">
+            <Link to='/dashboard' className="hover:text-blue-600 dark:text-blue-400 font-bold px-3 py-2 rounded">
               Home
             </Link>
-            <Link to='/leaderboard' className="hover:bg-blue-700 px-3 py-2 rounded">
+            <Link to='/leaderboard' className="hover:text-blue-600 dark:text-blue-400 font-bold px-3 py-2 rounded">
              LeaderBoard
             </Link>
-            <Link to='/profile' className="hover:bg-blue-700 px-3 py-2 rounded">
+            <Link to='/profile' className="hover:text-blue-600 dark:text-blue-400 font-bold px-3 py-2 rounded">
              Profile
             </Link>
            
@@ -66,14 +74,14 @@ const Navbar = () => {
       </div>
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-blue-600">
-          <Link to='/' className="block px-4 py-2 hover:bg-blue-700">
+        <div className="md:hidden dark:bg-slate-600">
+          <Link to='/dashboard' className="block px-4 py-2 font-bold dark:text-blue-400 hover:text-blue-600">
             Home
           </Link>
-          <Link to='/leaderboard' className="block px-4 py-2 hover:bg-blue-700">
+          <Link to='/leaderboard' className="block px-4 py-2 font-bold dark:text-blue-400 hover:text-blue-600">
             Leaderboard
           </Link>
-          <Link to='/profile' className="block px-4 py-2 hover:bg-blue-700">
+          <Link to='/profile' className="block px-4 py-2 font-bold dark:text-blue-400 hover:text-blue-600">
             Profile
           </Link>
           

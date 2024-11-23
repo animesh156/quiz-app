@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import LeaderBoard from "./pages/LeaderBoard"
+import Home from "./pages/Home";
 
 import Profile from './pages/Profile'
 
@@ -21,7 +22,8 @@ function App() {
      
           <Navbar />
           <Routes>
-            <Route path="/" element={<Dashboard  />} />
+          <Route path="/" element={<Home  />} />
+            <Route path="/dashboard" element={<Dashboard  />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/quiz" element={<Quiz  />} />
