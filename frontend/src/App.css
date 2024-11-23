@@ -33,6 +33,12 @@ li {
   line-height: 2.2;
 }
 
+.log,.reg {
+  background-image: url('https://i.pinimg.com/originals/db/34/d4/db34d40b271fb59477621550bf73ea0b.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 h1,
 h2,
 h3 {

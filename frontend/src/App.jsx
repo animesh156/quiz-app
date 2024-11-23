@@ -1,30 +1,34 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
+import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import LeaderBoard from "./pages/LeaderBoard"
+
+import Profile from './pages/Profile'
 
 import Quiz from "./pages/Quiz";
 
 
 
 function App() {
+
+  
  
   return (
     <>
       <Router>
-        <div className="container">
-          <Header />
+     
+          <Navbar />
           <Routes>
             <Route path="/" element={<Dashboard  />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/quiz" element={<Quiz  />} />
             <Route path="/leaderBoard" element={<LeaderBoard  />} />
-          
+            <Route path="/profile" element={<Profile  />} />
           </Routes>
-        </div>
+      
       </Router>
     </>
   );

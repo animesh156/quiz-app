@@ -2,7 +2,7 @@
 import  { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Result from '../components/Result'
-import Spinner from '../components/Spinner';
+
 import axios from 'axios';
 
 
@@ -150,7 +150,9 @@ const setUserScore = async(score) => {
   
 
   if (!questions.length) {
-    return <Spinner />
+    return (<div className="flex justify-center items-center h-96">
+      <div className="loader border-t-4 border-blue-500 border-solid rounded-full w-16 h-16 animate-spin"></div>
+    </div>)
   }
 
 
