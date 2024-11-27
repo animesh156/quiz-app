@@ -23,7 +23,9 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div >
-           <img src={avatar}  alt="avatar_img" className="w-11" />
+          <Link to='/profile'>
+          <img src={avatar}  alt="avatar_img" className="w-11" />
+          </Link> 
           
           </div>
           {/* Hamburger Menu */}
