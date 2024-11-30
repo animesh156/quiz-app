@@ -13,12 +13,6 @@ const loginRoute =    "https://quiz-app-backend-black.vercel.app/user/login"
 const register = async (userData) => {
   const response = await axios.post(registerRoute, userData)
 
- 
-
-  if (response.data) {
-    localStorage.setItem('user', JSON.stringify(response.data))
-  }
-
   return response.data
 }
 
@@ -26,16 +20,12 @@ const register = async (userData) => {
 const login = async (userData) => {
   const response = await axios.post(loginRoute, userData)
 
-  if (response.data) {
-    localStorage.setItem('user', JSON.stringify(response.data))
-  }
-
   return response.data
 }
 
 // Logout user
 const logout = () => {
-  localStorage.removeItem('user')
+  return {};
 }
 
 const authService = {

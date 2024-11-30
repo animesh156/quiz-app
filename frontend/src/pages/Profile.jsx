@@ -11,16 +11,14 @@ function Profile() {
   const onLogout = () => {
     dispatch(logout())
     dispatch(reset())
-    console.log(user)
+    
     navigate('/login')
   }
 
-  const storedUser = localStorage.getItem("user");
-  const parsedUser = storedUser ? JSON.parse(storedUser) : null;
 
   // Extract `name` and `avatar` from localStorage or set defaults
-  const userName = user?.name || parsedUser?.name || "Guest";
-  const avatar = user?.avatar || parsedUser?.avatar || "/default-avatar.png"; // Use a default avatar if none is provided
+  const userName = user?.name || "Guest";
+  const avatar = user?.avatar ||  "/default-avatar.png"; // Use a default avatar if none is provided
 
 
   return (
