@@ -7,12 +7,10 @@ const Navbar = () => {
 
   const { user } = useSelector((state) => state.auth);
 
-  const storedUser = localStorage.getItem("user");
-  const parsedUser = storedUser ? JSON.parse(storedUser) : null;
 
  
  
-  const avatar = user?.avatar || parsedUser?.avatar || "/default-avatar.png"; // Use a default avatar if none is provided
+  const avatar = user?.avatar || "/default-avatar.png"; // Use a default avatar if none is provided
 
 
   if(!user) return <></>

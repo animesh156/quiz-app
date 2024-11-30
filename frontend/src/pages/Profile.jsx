@@ -11,6 +11,7 @@ function Profile() {
   const onLogout = () => {
     dispatch(logout())
     dispatch(reset())
+    console.log(user)
     navigate('/login')
   }
 
