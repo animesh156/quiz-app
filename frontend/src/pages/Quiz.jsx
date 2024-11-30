@@ -19,8 +19,17 @@ const Quiz = () => {
   const difficulty = useSelector((state) => state.quizOptions.difficulty);
   const totalQuestion = useSelector((state) => state.quizOptions.totalQuestion);
   const type = useSelector((state) => state.quizOptions.type);
+  const { user } = useSelector((state) => state.auth);
 
 
+  const token = user.token
+
+  
+  const userid = user._id
+  const userName = user.name
+
+
+ 
   // Shuffle function for the answers
   const shuffleArray = (array) => {
     return array.sort(() => Math.random() - 0.5);
@@ -113,23 +122,11 @@ const Quiz = () => {
     }
   }
 
-    const getToken = () => {
-    const user = localStorage.getItem('user');  // Retrieve the user object from localStorage
-    if (user) {
-      const parsedUser = JSON.parse(user);      // Parse the JSON string back into an object
-      return parsedUser.token;                  // Access the token from the parsed object
-    }
-    return null;  // Return null if there's no user data
-  };
+    
   
   
   
-  const token = getToken()
-
-  const user = localStorage.getItem('user')
-  const userid = JSON.parse(user)._id
-  const userName = JSON.parse(user).name
-
+ 
   // add user score to database
 
 const setUserScore = async(score) => {
