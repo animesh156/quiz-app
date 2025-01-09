@@ -28,16 +28,14 @@ function Profile() {
       try {
         // API call to fetch the user score
        
-   const response =  await axios.get(`https://quiz-app-backend-black.vercel.app/score/?user=${user?._id}`)
-      console.log(response.data)
+   const response =  await axios.get(`https://quiz-app-backend-black.vercel.app/?userName=${user?.name}`)
+     
         setUserScore(response.data);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching user score:', error);
         setLoading(false);
-      } finally{
-        console.log(userScore)
-      }
+      } 
     };
 
     if (user?._id) {
@@ -62,7 +60,7 @@ function Profile() {
       <h4 className="text-3xl dark:text-pink-500 font-bold mt-5">{userName}</h4>
 
       {userScore ? (
-        <p className="mt-4 text-lg dark:text-gray-400">
+        <p className="mt-4 text-lg font-bold dark:text-gray-400">
           Your current score: <span className="font-bold">{userScore.score}</span>
         </p>
       ) : (

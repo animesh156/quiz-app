@@ -32,10 +32,10 @@ const addScore = asyncHandler(
 
 
 const getScore = asyncHandler(async(req,res) => {
-  const {user} = req.query
+  const {userName} = req.query
   try {
 
-    const userScore = await Score.findOne({user})
+    const userScore = await Score.findOne({userName})
 
     res.status(200).json(userScore)
     
