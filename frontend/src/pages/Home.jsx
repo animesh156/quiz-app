@@ -11,7 +11,7 @@ function Home() {
   }
 
   return (
-    <div className="flex flex-col items-center md:flex-row justify-around h-screen "> {/* Flexbox for centering */}
+    <div className="flex flex-col items-center md:flex-row justify-around h-screen"> {/* Flexbox for centering */}
       <div className="text-center">
         <h1 className="text-5xl mt-5 font-extrabold md:text-6xl  " style={{color: textColor}}>Quizie</h1>
         {/* Animated Text */}

@@ -16,7 +16,7 @@ const Navbar = () => {
   if(!user) return <></>
  
   return (
-    <nav className=" dark:bg-gray-600 text-white">
+    <nav className=" dark:bg-neutral-800 dark:text-white bg-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -30,7 +30,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white focus:outline-none"
+              className="text-black dark:text-white focus:outline-none"
             >
               <svg
                 className="h-6 w-6"
@@ -59,13 +59,13 @@ const Navbar = () => {
           </div>
           {/* Full Menu */}
           <div className="hidden md:flex space-x-4">
-            <Link to='/dashboard' className="hover:text-blue-600 dark:text-blue-400 font-bold px-3 py-2 rounded">
+            <Link to='/dashboard' className="hover:text-blue-600 dark:text-white font-extrabold px-3 py-2 rounded">
               Home
             </Link>
-            <Link to='/leaderboard' className="hover:text-blue-600 dark:text-blue-400 font-bold px-3 py-2 rounded">
+            <Link to='/leaderboard' className="hover:text-blue-600 dark:text-white font-extrabold px-3 py-2 rounded">
              LeaderBoard
             </Link>
-            <Link to='/profile' className="hover:text-blue-600 dark:text-blue-400 font-bold px-3 py-2 rounded">
+            <Link to='/profile' className="hover:text-blue-600 dark:text-white font-extrabold px-3 py-2 rounded">
              Profile
             </Link>
            
@@ -74,14 +74,14 @@ const Navbar = () => {
       </div>
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden dark:bg-slate-600">
-          <Link to='/dashboard' className="block px-4 py-2 font-bold dark:text-blue-400 hover:text-blue-600">
+        <div className="md:hidden dark:bg-neutral-900 bg-gray-300">
+          <Link to='/dashboard' className="block px-4 py-2 font-extrabold dark:text-white hover:text-blue-600">
             Home
           </Link>
-          <Link to='/leaderboard' className="block px-4 py-2 font-bold dark:text-blue-400 hover:text-blue-600">
+          <Link to='/leaderboard' className="block px-4 py-2 font-extrabold dark:text-white hover:text-blue-600">
             Leaderboard
           </Link>
-          <Link to='/profile' className="block px-4 py-2 font-bold dark:text-blue-400 hover:text-blue-600">
+          <Link to='/profile' className="block px-4 py-2 font-extrabold dark:text-white hover:text-blue-600">
             Profile
           </Link>
           

@@ -161,8 +161,9 @@ const setUserScore = async(score) => {
 
   const currentQuestion = questions[currentQuestionIndex];
 
+
   return (
-    <div className='border-cyan-50 shadow-md shadow-green-500 border-2 bg-gradient-to-r mt-6 max-w-sm px-5 from-cyan-300 to-pink-400 md:max-w-3xl m-auto rounded-lg'>
+    <div className='border-cyan-50  shadow-md shadow-green-500 border-2 bg-gradient-to-r mt-6 max-w-sm px-5 from-cyan-300 to-pink-400 md:max-w-3xl m-auto rounded-lg'>
       <h2 className='text-2xl font-bold mt-3 text-center'>Question {currentQuestionIndex + 1} of {questions.length}</h2>
       <div className='border-black border-2 mt-8 bg-gray-50 w-auto px-3 py-2 rounded-2xl max-w-md m-auto overflow-auto'>
       <h3 className='dark:text-red-500 font-bold text-center'>{currentQuestion.question}</h3>

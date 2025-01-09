@@ -31,6 +31,19 @@ const addScore = asyncHandler(
 
 
 
+const getScore = asyncHandler(async(req,res) => {
+  const {user} = req.query
+  try {
+
+    const userScore = await Score.findOne({user})
+
+    res.status(200).json(userScore)
+    
+  } catch (error) {
+    req.status(500).json({message:'error fetching user data'})
+  }
+})
+
 
 
 
@@ -39,5 +52,6 @@ const addScore = asyncHandler(
 module.exports = {
    
     addScore,
+    getScore
  
 }
