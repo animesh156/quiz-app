@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 app.use('/quiz',protect,quizRoute)
 app.use('/user', userRoutes)
-app.use('/score',protect,scoreRoute)
+app.use('/score',scoreRoute)
 app.use('/leaderboard',leaderBoardRoute)
 app.listen(port, () => { 
     console.log(`server started at ${port}`)

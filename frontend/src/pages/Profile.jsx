@@ -27,18 +27,20 @@ function Profile() {
     const fetchUserScore = async () => {
       try {
         // API call to fetch the user score
-        const response = await axios.get(
-          `https://quiz-app-backend-black.vercel.app/score?user=${user?.id}`
-        ); // Replace with your API's base URL
+       
+   const response =  await axios.get(`https://quiz-app-backend-black.vercel.app/score/?user=${user?._id}`)
+      console.log(response.data)
         setUserScore(response.data);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching user score:', error);
         setLoading(false);
+      } finally{
+        console.log(userScore)
       }
     };
 
-    if (user?.id) {
+    if (user?._id) {
       fetchUserScore();
     }
   }, [user]);
