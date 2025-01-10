@@ -42,7 +42,7 @@ function LeaderBoard() {
         {userScores.map((user, index) => (
           <li
             key={index}
-            className="mt-8 relative m-auto flex justify-evenly items-center rounded-xl border-2 mb-4 border-black dark:bg-neutral-900 py-2 text-center bg-neutral-300 dark:text-orange-500 overflow-hidden"
+            className="mt-8 relative m-auto flex justify-evenly items-center rounded-xl border-2 mb-4 dark:border-black dark:bg-neutral-900 py-2 text-center bg-sky-50 dark:text-orange-500 overflow-hidden"
           >
             {/* Restrict BorderBeam Overflow */}
             <div className="absolute inset-0 overflow-hidden">

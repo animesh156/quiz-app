@@ -76,12 +76,12 @@ function Register() {
       className="h-screen w-full bg-cover bg-center flex items-center justify-center log"
       style={{ backgroundImage: "url('/bg.jpg')" }}
     >
-      <section className="mx-auto border-2 border-sky-500 shadow-md shadow-cyan-200 w-80 px-4 py-6 text-center bg-zinc-950 rounded-3xl">
+      <section className="mx-auto border border-gray-300  backdrop-blur-sm shadow-md  md:w-96 px-4 py-4 text-center  rounded-3xl">
         <form onSubmit={onSubmit}>
           <div>
             <input
               type="text"
-              className="py-2.5 px-3 border-2 border-pink-400 focus:outline-none focus:ring-2 focus:ring-pink-500 rounded-3xl bg-black caret-yellow-500 text-rose-500 mb-8"
+              className="py-2.5 px-3 border-2 border-gray-400  focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-xl md:w-80   caret-yellow-500 text-rose-500 mb-8"
               id="name"
               name="name"
               value={name}
@@ -92,7 +92,7 @@ function Register() {
           <div>
             <input
               type="email"
-              className="py-2.5 px-3 border-2 border-pink-400 focus:outline-none focus:ring-2 focus:ring-pink-500 rounded-3xl bg-black caret-yellow-500 text-rose-500 mb-8"
+              className="py-2.5 px-3 border-2 border-gray-300  focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-xl md:w-80   caret-yellow-500 text-rose-500 mb-8"
               id="email"
               name="email"
               value={email}
@@ -103,7 +103,7 @@ function Register() {
           <div>
             <input
               type="password"
-              className="py-2.5 px-3 border-2 border-pink-400 focus:outline-none focus:ring-2 focus:ring-pink-500 rounded-3xl bg-black caret-yellow-500 text-rose-500 mb-8"
+              className="py-2.5 px-3 border-2 border-gray-400  focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-xl md:w-80   caret-yellow-500 text-rose-500 mb-8"
               id="password"
               name="password"
               value={password}
@@ -149,18 +149,18 @@ function Register() {
           <div>
             <button
               type="submit"
-              className="font-bold bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 rounded-lg text-sm px-5 py-2.5 text-center mb-2"
+              className="bg-sky-500 hover:bg-sky-600  md:w-40 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-bold rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
             >
               Sign Up
             </button>
           </div>
 
           <div>
-            <p className="font-semibold text-1xl text-cyan-300 mt-3">
+            <p className="font-medium text-1xl  mt-3">
               Already have an account?{' '}
               <Link
                 to="/login"
-                className="text-orange-500 hover:text-orange-400 font-extrabold"
+                className="text-red-500 hover:text-red-600 font-extrabold"
               >
                 Log In
               </Link>

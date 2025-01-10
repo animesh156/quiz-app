@@ -38,7 +38,7 @@ function Header() {
         <ul
           className={`${
             click ? "nav-menu active" : "nav-menu "
-          } dark:bg-neutral-800 dark:text-yellow-300 bg-slate-200 font-bold text-red-500`}
+          } dark:bg-neutral-800 dark:text-yellow-300 bg-zinc-200 font-bold text-red-500`}
         >
           <li className="nav-item">
             <NavLink
