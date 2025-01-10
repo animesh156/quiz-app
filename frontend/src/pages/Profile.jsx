@@ -28,7 +28,7 @@ function Profile() {
       try {
         // API call to fetch the user score
        
-   const response =  await axios.get(`https://quiz-app-backend-black.vercel.app/?userName=${user?.name}`)
+   const response =  await axios.get(`https://quiz-app-backend-black.vercel.app/score/?userName=${user?.name}`)
      
         setUserScore(response.data);
         setLoading(false);
