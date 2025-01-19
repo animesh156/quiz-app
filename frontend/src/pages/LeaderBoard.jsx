@@ -26,15 +26,16 @@ function LeaderBoard() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-96">
+      <div className="flex justify-center items-center h-screen">
         <div className="loader border-t-4 border-blue-500 border-solid rounded-full w-16 h-16 animate-spin"></div>
       </div>
     );
   }
 
   return (
-    <div className="p-3">
-      <div className="m-auto mt-5 w-auto rounded-3xl border-2 border-slate-500 dark:border-pink-600 bg-slate-100 py-3 md:max-w-lg dark:bg-black dark:text-orange-500">
+    <div className="h-screen  p-4 md:p-0">
+      <div className="m-auto mt-8 flex items-center justify-center gap-x-4 w-auto rounded-3xl border-2  bg-gradient-to-r from-blue-400 to-sky-700 py-4  md:max-w-lg  text-black">
+      <FaTrophy className=" text-yellow-400" size={28} />
         <p className="text-center text-2xl font-extrabold">LeaderBoard</p>
       </div>
 
@@ -42,14 +43,14 @@ function LeaderBoard() {
         {userScores.map((user, index) => (
           <li
             key={index}
-            className="mt-8 relative m-auto flex justify-evenly items-center rounded-xl border-2 mb-4 dark:border-black dark:bg-neutral-900 py-2 text-center bg-sky-50 dark:text-orange-500 overflow-hidden"
+            className="mt-8 relative m-auto flex justify-evenly items-center rounded-xl border-2 mb-4 dark:border-black dark:bg-neutral-900 py-2 text-center bg-gradient-to-r from-cyan-500 to-cyan-200 dark:text-orange-500 overflow-hidden"
           >
             {/* Restrict BorderBeam Overflow */}
             <div className="absolute inset-0 overflow-hidden">
               <BorderBeam duration={10} size={400} borderWidth={3} />
             </div>
             <div className="flex flex-row items-center basis-1/4 flex-shrink-0 gap-x-1">
-              <div className="w-9 rounded-full bg-cyan-200 font-bold dark:bg-slate-900 text-center flex-shrink-0 flex-grow-0">
+              <div className="w-9 rounded-full  font-bold bg-slate-900  text-white text-center flex-shrink-0 flex-grow-0">
                 {index + 1}
               </div>
               {index === 0 && (
@@ -59,11 +60,11 @@ function LeaderBoard() {
               )}
             </div>
 
-            <div className="text-1xl font-bold basis-1/4 text-center">
+            <div className="text-1xl text-neutral-950 font-bold basis-1/4 uppercase font-serif text-center">
               {user.userName}
             </div>
 
-            <div className="rounded-2xl basis-1/4 border-2 border-black bg-gray-200 font-bold dark:bg-slate-900 text-center">
+            <div className="rounded-2xl basis-1/4 border-2  border-black bg-pink-200 font-bold dark:bg-slate-900 text-center">
               {user.score}
             </div>
           </li>

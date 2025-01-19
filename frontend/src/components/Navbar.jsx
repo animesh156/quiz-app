@@ -8,6 +8,7 @@ import { BsList } from "react-icons/bs";
 
 function Header() {
   const [click, setClick] = useState(false);
+  
   const navigate = useNavigate();
   
 
@@ -22,7 +23,7 @@ function Header() {
   if (!user) return <></>;  // Don't render navbar if user is not logged in
 
   return (
-    <nav className="navbar bg-zinc-200  dark:bg-neutral-800">
+    <nav className="navbar">
       <div className="nav-container">
         <div className="nav-logo">
           <button
@@ -38,14 +39,14 @@ function Header() {
         <ul
           className={`${
             click ? "nav-menu active" : "nav-menu "
-          } dark:bg-neutral-800 dark:text-yellow-300 bg-zinc-200 font-bold text-red-500`}
+          }  dark:text-yellow-300  font-bold text-red-500`}
         >
           <li className="nav-item">
             <NavLink
               exact
               to="/dashboard"
               activeClassName="active"
-              className="nav-links dark:text-white"
+              className="nav-links text-base text-white"
               onClick={handleClick}
             >
               Home
@@ -56,7 +57,7 @@ function Header() {
               exact
               to="/leaderboard"
               activeClassName="active"
-              className="nav-links dark:text-white"
+              className="nav-links text-base text-white"
               onClick={handleClick}
             >
               LeaderBoard
@@ -67,7 +68,7 @@ function Header() {
               exact
               to="/profile"
               activeClassName="active"
-              className="nav-links dark:text-white"
+              className="nav-links text-base text-white"
               onClick={handleClick}
             >
              Profile

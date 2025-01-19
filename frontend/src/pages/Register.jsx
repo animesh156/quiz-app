@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 import { register, reset } from '../features/auth/authSlice';
 
@@ -27,16 +27,24 @@ function Register() {
 
   useEffect(() => {
     if (isError) {
-      console.log(message);
-      toast.error(message);
+      
+      toast.error('User already exist');
+      dispatch(reset());
     }
 
     if (isSuccess || user) {
-      navigate('/dashboard');
+      toast.success('Registered successfully')
+      setTimeout(() => {
+        navigate('/dashboard');
+        dispatch(reset());
+      },1000)
+      
     }
 
-    dispatch(reset());
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
+    
+
+    
+  }, [user, isError, isSuccess, message, navigate,dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -76,7 +84,8 @@ function Register() {
       className="h-screen w-full bg-cover bg-center flex items-center justify-center log"
       style={{ backgroundImage: "url('/bg.jpg')" }}
     >
-      <section className="mx-auto border border-gray-300  backdrop-blur-sm shadow-md  md:w-96 px-4 py-4 text-center  rounded-3xl">
+      <ToastContainer />
+      <section className="mx-auto border border-gray-300  backdrop-blur-sm shadow-md w-80 md:w-96 px-4 py-4 text-center  rounded-3xl">
         <form onSubmit={onSubmit}>
           <div>
             <input

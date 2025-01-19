@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-
-
 import {
   setCategory,
   setDifficulty,
@@ -49,19 +47,17 @@ function Dashboard() {
   };
 
   return (
-    <div className="px-5 ">
+    <div className="px-5">
       <section className="heading mb-5 mt-3">
-        <h1 className="text-2xl text-center dark:text-white">
-          Welcome <span className="font-bold uppercase text-pink-500">{user && user.name}</span>
+        <h1 className="text-3xl text-center dark:text-rose-700">
+          Welcome <span className="font-extrabold uppercase text-pink-500">{user && user.name}</span>
         </h1>
       </section>
 
       <form
-        className="max-w-md relative mx-auto  text-center bg-slate-300  px-5 py-3 dark:bg-zinc-900 rounded-xl border-2 border-r-green-500 border-l-pink-500 border-t-red-500 border-b-yellow-400 shadow-md "
+        className="max-w-md mx-auto text-center border-cyan-300 border-2 px-5 py-3 rounded-2xl shadow-md "
         onSubmit={onSubmit}
       >
-        
-       
 
         {/* Category */}
         <label
@@ -144,13 +140,6 @@ function Dashboard() {
           Start Quiz
         </button>
       </form>
-
-
-    
-
-
-
-
     </div>
   );
 }

@@ -221,6 +221,8 @@ option {
   position: sticky;
   top: 0;
   z-index: 20;
+
+  background-color: #441752;
   
   
  
@@ -234,6 +236,7 @@ option {
   height: 80px;
   max-width: 1500px;
   position: relative;
+ 
 }
 
 .nav-logo {
@@ -262,6 +265,7 @@ option {
   list-style: none;
   text-align: center;
   margin-right: 2rem;
+  background-color: #441752;
 }
 
 .nav-links {
@@ -358,4 +362,5 @@ option {
     color: #fd093e;
   }
 }
+
 
