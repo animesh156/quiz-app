@@ -1,5 +1,14 @@
 import { quickQuizData } from "../utils/quickQuizData";
 import { motion } from "framer-motion";
+import {useDispatch} from 'react-redux'
+import { useNavigate } from "react-router-dom";
+import {
+  resetQuiz,
+  setCategory,
+  setDifficulty,
+  setTotalQuestions,
+  setType,
+} from "../features/quiz/quizSlice";
 
 function QuickQuiz() {
   const animationSettings = {
@@ -8,6 +17,22 @@ function QuickQuiz() {
     transition: { type: "spring", stiffness: 50 }, // Spring animation
   };
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleClick = (val) => {
+         dispatch(setCategory(val))
+         dispatch(setDifficulty('easy'))
+         dispatch(setType('multiple'))
+         dispatch(setTotalQuestions(10))
+
+         navigate('/quiz')
+         
+       
+           dispatch(resetQuiz)
+      
+  }
+
   return (
     <div className="h-screen mt-11">
 
@@ -15,6 +40,7 @@ function QuickQuiz() {
       {quickQuizData.map((quizData, index) => (
         <motion.div
           className="card cursor-pointer  bg-neutral-900 hover:shadow-lg hover:shadow-cyan-500 mb-7 md:h-72 md:w-80 shadow-xl"
+          onClick={() => handleClick(quizData.category)}
           key={index}
           {...animationSettings}
           transition={{

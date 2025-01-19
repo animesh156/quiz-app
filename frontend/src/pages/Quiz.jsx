@@ -22,7 +22,7 @@ const Quiz = () => {
   const { user } = useSelector((state) => state.auth);
 
 
-  const token = user.token
+  
 
   
   const userid = user._id
@@ -72,7 +72,7 @@ const Quiz = () => {
     };
 
     getQuizData();
-  }, []);  
+  }, [category,difficulty,totalQuestion,type]);  
 
 
   useEffect(() => {
@@ -129,9 +129,7 @@ const Quiz = () => {
 
 const setUserScore = async(score) => {
   try {
-    const res = await axios.post('https://quiz-app-backend-black.vercel.app/score', {score,userid,userName}, {headers: {
-     'Authorization': `Bearer ${token}`
-   }})
+    const res = await axios.post('https://quiz-app-backend-black.vercel.app/score', {score,userid,userName})
       if(res.data) return true
    } catch (error) {
      console.log(`Error sending user score`,error)

@@ -12,24 +12,35 @@ const Result = ({ score, totalQuestions }) => {
 
   
   return (
-    <div className="text-center min-h-screen flex justify-center items-center mx-auto  flex-col overflow-hidden">
+    <div className="text-center min-h-screen flex relative justify-center items-center mx-auto  flex-col overflow-hidden">
       {/* Confetti Effect for Every Score */}
-      <Confetti className="w-full" />
+      
+      {score === totalQuestions && (
+        <Confetti
+          width={window.innerWidth}
+          height={window.innerHeight}
+          className="absolute top-0 left-0 z-10"
+        />
+      )}
 
       {score === totalQuestions ? (
         <div>
-          <p className="text-4xl -mt-5 mb-7 font-extrabold text-green-700">
+          <p className="md:text-4xl -mt-5 mb-7 font-extrabold text-green-700">
             Congratulations {user?.name || "Player"}!
           </p>
           <MdCelebration className="m-auto size-20 text-pink-600" />
         </div>
       ) : (
+       
+       
         <div>
-          <p className="text-4xl -mt-5 mb-7 font-extrabold text-red-600">
+          <p className="md:text-4xl text-xl -mt-5 mb-7 font-extrabold text-red-600">
             Better Luck Next Time, {user?.name || "Player"}!
           </p>
           <ImSad className="m-auto size-20 text-red-500" />
         </div>
+       
+        
       )}
 
       <p className="text-3xl font-bold mt-12 dark:text-cyan-300">

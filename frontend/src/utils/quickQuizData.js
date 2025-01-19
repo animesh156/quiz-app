@@ -2,27 +2,32 @@
 export const quickQuizData = [
     {
         image:"/sports.png",
-        title:"Sports"
+        title:"Sports",
+        category:21
     },
 
     {
-        image:"/space.png",
-        title:"Space"
+        image:"/book.png",
+        title:"General Knowledge",
+        category:9
     },
 
     {
         image:"/animal.png",
-        title:"Animals"
+        title:"Animals",
+        category:27
     },
 
     {
         image:"/mythology.png",
-        title:"Mythology"
+        title:"Mythology",
+        category:20
     },
 
     {
         image:"/science.png",
-        title:"Science"
+        title:"Science",
+        category:17
     },
 
 ]

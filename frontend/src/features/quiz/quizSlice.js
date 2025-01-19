@@ -24,9 +24,10 @@ const quizSlice = createSlice(
             setType: (state,action) => {
                 state.type = action.payload
             },
+            resetQuiz: () => initialState, 
         },
     }
 );
 
-export const {setCategory, setDifficulty, setTotalQuestions, setType} = quizSlice.actions;
+export const {setCategory, setDifficulty, setTotalQuestions, setType, resetQuiz} = quizSlice.actions;
 export default quizSlice.reducer;
