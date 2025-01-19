@@ -17,7 +17,7 @@ function App() {
   
  
   return (
-    <>
+    <div className="bg-neutral-950">
       <Router>
      
           <Navbar />
