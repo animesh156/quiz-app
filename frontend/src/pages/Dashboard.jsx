@@ -1,7 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
 
 import {
   setCategory,
@@ -13,15 +12,16 @@ import {
 import Spinner from "../components/Spinner";
 
 import { reset } from "../features/auth/authSlice";
+import QuickQuiz from "../components/QuickQuiz";
 
 function Dashboard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
- 
-
   const { user, isLoading, isError, message } = useSelector(
     (state) => state.auth
   );
+
+  const [activeTab, setActiveTab] = useState("custom");
 
   useEffect(() => {
     if (!user) {
@@ -46,20 +46,34 @@ function Dashboard() {
     navigate("/quiz");
   };
 
-
-
   return (
-    <div className="px-5 h-screen mt-7 overflow-y-hidden">
-      <section className=" mb-5 mt-3">
+    <>
+      <section className=" mb-2 mt-2">
         <h1 className="text-3xl text-center dark:text-rose-700">
           Welcome <span className="font-extrabold uppercase text-pink-500">{user && user.name}</span>
         </h1>
       </section>
 
-     
+      {/* Tabs for Custom Quiz & Quick Quiz */}
+      <div className="flex justify-center space-x-4 mb-6">
+        <button
+          onClick={() => setActiveTab("custom")}
+          className={`px-6 py-2 rounded-lg ${activeTab === "custom" ? "bg-teal-500 text-white" : "bg-gray-200"}`}
+        >
+          Custom Quiz
+        </button>
+        <button
+          onClick={() => setActiveTab("quick")}
+          className={`px-6 py-2 rounded-lg ${activeTab === "quick" ? "bg-teal-500 text-white" : "bg-gray-200"}`}
+        >
+          Quick Quiz
+        </button>
+      </div>
 
-     
-        <form
+      {/* Render content based on active tab */}
+      {activeTab === "custom" ? (
+        <div className="h-screen">
+         <form
           className="max-w-md bg-cyan-100 mx-auto text-center border-cyan-300 border-2 px-5 py-3 rounded-2xl shadow-md"
           onSubmit={onSubmit}
         >
@@ -86,6 +100,7 @@ function Dashboard() {
             <option value="20">Mythology</option>
           </select>
 
+          {/* Difficulty */}
           <label
             htmlFor="small"
             className="block mb-2 text-sm text-gray-900 dark:text-orange-400 font-bold"
@@ -102,6 +117,7 @@ function Dashboard() {
             <option value="hard">Hard</option>
           </select>
 
+          {/* Total Questions */}
           <label
             htmlFor="small"
             className="block mb-2 text-sm font-bold text-gray-900 dark:text-orange-400"
@@ -119,6 +135,7 @@ function Dashboard() {
             <option value="20">20</option>
           </select>
 
+          {/* Type */}
           <label
             htmlFor="small"
             className="block mb-2 text-sm font-bold text-gray-900 dark:text-orange-400"
@@ -141,8 +158,12 @@ function Dashboard() {
             Start Quiz
           </button>
         </form>
-      
-    </div>
+        </div>
+       
+      ) : <QuickQuiz /> }
+
+     
+    </>
   );
 }
 

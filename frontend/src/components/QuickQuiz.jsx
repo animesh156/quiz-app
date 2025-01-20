@@ -24,7 +24,7 @@ function QuickQuiz() {
          dispatch(setCategory(val))
          dispatch(setDifficulty('easy'))
          dispatch(setType('multiple'))
-         dispatch(setTotalQuestions(10))
+         dispatch(setTotalQuestions(5))
 
          navigate('/quiz')
          
@@ -34,7 +34,7 @@ function QuickQuiz() {
   }
 
   return (
-    <div className="h-screen mt-11">
+    <>
 
 <div className="flex flex-wrap gap-x-8 gap-y-4   justify-center ">
       {quickQuizData.map((quizData, index) => (
@@ -60,7 +60,7 @@ function QuickQuiz() {
       ))}
     </div>
 
-    </div>
+    </>
    
   );
 }
