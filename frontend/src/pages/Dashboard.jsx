@@ -49,8 +49,8 @@ function Dashboard() {
 
 
   return (
-    <div className="px-5">
-      <section className="heading mb-5 mt-3">
+    <div className="px-5 h-screen mt-7 overflow-y-hidden">
+      <section className=" mb-5 mt-3">
         <h1 className="text-3xl text-center dark:text-rose-700">
           Welcome <span className="font-extrabold uppercase text-pink-500">{user && user.name}</span>
         </h1>
@@ -60,7 +60,7 @@ function Dashboard() {
 
      
         <form
-          className="max-w-md mx-auto text-center border-cyan-300 border-2 px-5 py-3 rounded-2xl shadow-md"
+          className="max-w-md bg-cyan-100 mx-auto text-center border-cyan-300 border-2 px-5 py-3 rounded-2xl shadow-md"
           onSubmit={onSubmit}
         >
           {/* Category */}

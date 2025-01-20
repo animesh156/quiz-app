@@ -5,7 +5,7 @@ const {protect} = require('../middleware/authMiddleware')
 
 
 
-router.post('/',protect,addScore)
+router.post('/',addScore)
 router.get('/',getScore)
 
 

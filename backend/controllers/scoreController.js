@@ -5,7 +5,7 @@ const User = require('../model/userModel')
 
 
 
-const addScore = asyncHandler(
+const addScore = asyncHandler( 
     async (req,res) => {
 
         const { user, score } = req.body;

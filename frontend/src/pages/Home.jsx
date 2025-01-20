@@ -17,7 +17,7 @@ function Home() {
 
 
   return (
-    <div className="flex w-full flex-col bg-cover bg-center items-center md:flex-row justify-around h-screen"
+    <div className="flex  w-full flex-col bg-cover bg-center items-center md:flex-row justify-around h-screen"
     style={{backgroundImage:"url('/home.jpg')"}}
     > {/* Flexbox for centering */}
       <div className="text-center">

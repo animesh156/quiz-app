@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout, reset } from "../features/auth/authSlice";
@@ -12,6 +13,8 @@ function Profile() {
   const { user } = useSelector((state) => state.auth);
 
   const [userScore, setUserScore] = useState(null); // State to store user score
+  const [leaderboard, setLeaderboard] = useState([]); // State to store leaderboard data
+  const [userRank, setUserRank] = useState(null); // State to store user rank
   const [loading, setLoading] = useState(true); // State for loading
 
   const onLogout = () => {
@@ -19,7 +22,6 @@ function Profile() {
     setTimeout(() => {
       dispatch(logout());
       dispatch(reset());
-
       navigate("/login");
     }, 2000);
   };
@@ -29,40 +31,54 @@ function Profile() {
   const avatar = user?.avatar || "/default-avatar.png"; // Default avatar if none provided
 
   useEffect(() => {
-    const fetchUserScore = async () => {
+    const fetchUserData = async () => {
       try {
-        // API call to fetch the user score
-
-        const response = await axios.get(
+        // Fetch user score
+        const scoreResponse = await axios.get(
           `https://quiz-app-backend-black.vercel.app/score/?userName=${user?.name}`
         );
+        setUserScore(scoreResponse.data);
 
-        setUserScore(response.data);
+        // Fetch leaderboard data
+        const leaderboardResponse = await axios.get(
+          `https://quiz-app-backend-black.vercel.app/leaderboard`
+        );
+        setLeaderboard(leaderboardResponse.data);
+
+        // Determine user rank
+        const sortedLeaderboard = leaderboardResponse.data.sort(
+          (a, b) => b.score - a.score
+        );
+        const rank = sortedLeaderboard.findIndex(
+          (entry) => entry.userName === user?.name
+        );
+        setUserRank(rank + 1); 
+
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching user score:", error);
+        console.error("Error fetching data:", error);
         setLoading(false);
       }
     };
 
     if (user?._id) {
-      fetchUserScore();
+      fetchUserData();
     }
   }, [user]);
 
   if (loading) {
     return (
-      <div className="flex justify-center mt-28 items-center flex-col">
+      <div className="flex h-screen justify-center items-center flex-col">
         <div className="loader border-t-4 border-blue-500 border-solid rounded-full w-16 h-16 animate-spin"></div>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col text-center items-center justify-center mt-28 ">
+    <div className="flex flex-col h-screen text-center items-center justify-center">
       <ToastContainer />
       <div>
-        <img src={avatar} alt="" className="w-48 rounded-full" />
+        <img src={avatar} alt="user_avatar" className="w-48 rounded-full" />
       </div>
 
       <div>
@@ -71,11 +87,22 @@ function Profile() {
         </h4>
 
         {userScore ? (
-          <p className="mt-4 text-lg font-bold dark:text-sky-500">
-            Current score: <span className="font-bold">{userScore.score}</span>
-          </p>
+          <>
+            <p className="mt-4 text-lg md:text-3xl font-bold text-sky-500">
+              Current score: <span className="font-bold">{userScore.score}</span>
+            </p>
+            {userRank ? (
+              <p className="mt-2 text-lg md:text-3xl font-bold text-green-500">
+                Your ranking: #{userRank}
+              </p>
+            ) : (
+              <p className="mt-2 text-lg text-gray-400">
+                Ranking data not available
+              </p>
+            )}
+          </>
         ) : (
-          <p className="mt-4 text-lg dark:text-gray-400">
+          <p className="mt-4 text-lg dark:text-pink-400">
             Score data not available
           </p>
         )}
