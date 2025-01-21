@@ -26,7 +26,7 @@ const Quiz = () => {
 
   
   const userid = user._id
-  const userName = user.name
+  const username = user.name
 
 
  
@@ -122,14 +122,14 @@ const Quiz = () => {
 
     
   
-  
+   
   
  
   // add user score to database
 
 const setUserScore = async(score) => {
   try {
-    const res = await axios.post('https://quiz-app-backend-black.vercel.app/score', {score,userid,userName})
+    const res = await axios.post('https://quiz-app-backend-black.vercel.app/score', {score,userid,username})
       if(res.data) return true
    } catch (error) {
      console.log(`Error sending user score`,error)
