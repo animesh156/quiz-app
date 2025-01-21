@@ -39,7 +39,7 @@ function Dashboard() {
 
   if (isLoading) {
     return <Spinner />;
-  }
+  } 
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -47,7 +47,7 @@ function Dashboard() {
   };
 
   return (
-    <>
+    <div className="px-3">
       <section className=" mb-2 mt-2">
         <h1 className="text-3xl text-center dark:text-rose-700">
           Welcome <span className="font-extrabold uppercase text-pink-500">{user && user.name}</span>
@@ -163,7 +163,7 @@ function Dashboard() {
       ) : <QuickQuiz /> }
 
      
-    </>
+    </div>
   );
 }
 

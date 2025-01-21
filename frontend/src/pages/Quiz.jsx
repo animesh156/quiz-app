@@ -35,13 +35,11 @@ const Quiz = () => {
     return array.sort(() => Math.random() - 0.5);
   };
 
-  const handleQuizCompletion = () => {
-    setIsQuizFinished(true);
-  setUserScore(score);
-  };
+ 
 
   // Fetch quiz data when the component mounts
   useEffect(() => {
+    console.log(category)
     const getQuizData = async () => {
       try {
         const response =  await axios.get(`https://quiz-app-backend-black.vercel.app/quiz?amount=${totalQuestion}&category=${category}&difficulty=${difficulty}&type=${type}`, {
@@ -50,6 +48,8 @@ const Quiz = () => {
         if(!response.data) throw new Error('client error')
           
         const quizQuestions = response.data.results
+
+        console.log(quizQuestions)
        
 
         if (quizQuestions && Array.isArray(quizQuestions)) {
@@ -63,7 +63,7 @@ const Quiz = () => {
 
           setQuestions(formattedQuestions);
         } else {
-          console.error("Quiz data is not in the expected format.");
+          // console.error("Quiz data is not in the expected format.");
         }
 
       } catch (err) {
@@ -99,13 +99,30 @@ const Quiz = () => {
 
 
   // Handle the user's answer selection
-  const handleAnswer = (isCorrect,index) => {
-   
-    if (isCorrect) setScore(score + 1);
+  const handleAnswer = (isCorrect) => {
+    if (isCorrect) {
+      // Update the score and ensure it reflects in the final submission
+      setScore((prevScore) => {
+        const updatedScore = prevScore + 1;
   
-    handleNextQuestion(index)
+        // If it's the last question, call handleQuizCompletion with the updated score
+        if (currentQuestionIndex + 1 === questions.length) {
+          handleQuizCompletion(updatedScore);
+        }
+  
+        return updatedScore;
+      });
+    }
+  
+    // If it's not the last question, proceed to the next question
+    if (currentQuestionIndex + 1 < questions.length) {
+      handleNextQuestion();
+    } else if (!isCorrect) {
+      // If it's the last question but the answer is incorrect, finalize the quiz
+      handleQuizCompletion(score);
+    }
+  };
 
-  }
 
     // Move to the next question or finish the quiz
     const handleNextQuestion = () => {
@@ -121,6 +138,14 @@ const Quiz = () => {
   }
 
     
+
+  const handleQuizCompletion = (finalScore) => {
+    setIsQuizFinished(true);
+  
+    // Use the latest score (passed explicitly)
+    setUserScore(finalScore);
+  };
+
   
    
   
@@ -130,6 +155,7 @@ const Quiz = () => {
 const setUserScore = async(score) => {
   try {
     const res = await axios.post('https://quiz-app-backend-black.vercel.app/score', {score,userid,username})
+   
       if(res.data) return true
    } catch (error) {
      console.log(`Error sending user score`,error)
