@@ -145,8 +145,6 @@ const Quiz = () => {
     // Use the latest score (passed explicitly)
     setUserScore(finalScore);
   };
-
-  
    
   
  
