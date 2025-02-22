@@ -14,10 +14,11 @@ const leaderBoardRoute = require("./routes/leaderBoardRoute");
 connectDB();
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://quiz-app-frontend-blush.vercel.app/"],
+    origin:"https://quiz-app-frontend-blush.vercel.app",
     credentials: true,
   })
 );
+
 app.use(express.json());
 app.use(cookieParser());
 app.use("/quiz", quizRoute);
