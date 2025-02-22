@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */
 import { MdCelebration } from "react-icons/md";
 import { ImSad } from "react-icons/im";
-import { useSelector } from "react-redux";
+
 import { useNavigate } from "react-router-dom";
 import Confetti from "react-confetti";
 
 
 const Result = ({ score, totalQuestions }) => {
-  const { user } = useSelector((state) => state.auth);
+  
   const navigate = useNavigate();
+
+  const userName = localStorage.getItem("userName") || "guest"
 
   
   return (
@@ -26,7 +28,7 @@ const Result = ({ score, totalQuestions }) => {
       {score === totalQuestions ? (
         <div>
           <p className="md:text-4xl -mt-5 mb-7 font-extrabold text-green-700">
-            Congratulations {user?.name || "Player"}!
+            Congratulations {userName}!
           </p>
           <MdCelebration className="m-auto size-20 text-pink-600" />
         </div>
@@ -35,7 +37,7 @@ const Result = ({ score, totalQuestions }) => {
        
         <div>
           <p className="md:text-4xl text-xl -mt-5 mb-7 font-extrabold text-red-600">
-            Better Luck Next Time, {user?.name || "Player"}!
+            Better Luck Next Time, {userName}!
           </p>
           <ImSad className="m-auto size-20 text-red-500" />
         </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import {  useSelector } from "react-redux";
+
 
 
 import { IoClose } from "react-icons/io5";
@@ -10,17 +10,16 @@ function Header() {
   const [click, setClick] = useState(false);
   
   const navigate = useNavigate();
+
+  const isAuthenticated = localStorage.getItem("isAuthenticated")
   
-
-  const { user } = useSelector((state) => state.auth);
-
-  const avatar = user?.avatar || "/default-avatar.png"; // Use a default avatar if none is provided
+  const avatar =localStorage.getItem("avatar") || "/default-avatar.png"; // Use a default avatar if none is provided
 
 
   const handleClick = () => setClick(!click);
 
   // Conditionally render navbar content based on user authentication
-  if (!user) return <></>;  // Don't render navbar if user is not logged in
+  if (!isAuthenticated) return <></>;  // Don't render navbar if user is not logged in
 
   return (
     <nav className="navbar">

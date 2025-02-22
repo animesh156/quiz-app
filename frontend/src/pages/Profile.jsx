@@ -1,47 +1,61 @@
 /* eslint-disable no-unused-vars */
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logout, reset } from "../features/auth/authSlice";
+
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from '../utils/api'
 import { toast, ToastContainer } from "react-toastify";
 
 function Profile() {
-  const dispatch = useDispatch();
+ 
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state.auth);
+  
 
   const [userScore, setUserScore] = useState(null); // State to store user score
   const [leaderboard, setLeaderboard] = useState([]); // State to store leaderboard data
   const [userRank, setUserRank] = useState(null); // State to store user rank
   const [loading, setLoading] = useState(true); // State for loading
 
-  const onLogout = () => {
-    toast.success("Logged out successfully");
-    setTimeout(() => {
-      dispatch(logout());
-      dispatch(reset());
-      navigate("/login");
-    }, 2000);
+  const onLogout = async() => {
+
+    try {
+   await API.post('user/logout', {},{withCredentials:true})
+      toast.success("Logged out successfully");
+
+      localStorage.removeItem("isAuthenticated");
+     localStorage.removeItem("avatar")
+      localStorage.removeItem("userName");
+
+      setTimeout(() => {
+      
+        navigate("/login");
+      }, 2000);
+      
+    } catch (error) {
+      toast.error("Logout failed. Please try again");
+     
+      console.log(error)
+    }
+   
   };
 
   // Extract `name` and `avatar` or set defaults
-  const userName = user?.name || "Guest";
-  const avatar = user?.avatar || "/default-avatar.png"; // Default avatar if none provided
+  const userName =  localStorage.getItem("userName") || "Guest";
+  const avatar = localStorage.getItem("avatar") || "/default-avatar.png"; // Default avatar if none provided
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         // Fetch user score
-        const scoreResponse = await axios.get(
-          `https://quiz-app-backend-black.vercel.app/score/?userName=${user?.name}`
+        const scoreResponse = await API.get(
+          `/score/?userName=${userName}`
         );
         setUserScore(scoreResponse.data);
 
         // Fetch leaderboard data
-        const leaderboardResponse = await axios.get(
-          `https://quiz-app-backend-black.vercel.app/leaderboard`
+        const leaderboardResponse = await API.get(
+          `/leaderboard`
         );
         setLeaderboard(leaderboardResponse.data);
 
@@ -50,7 +64,7 @@ function Profile() {
           (a, b) => b.score - a.score
         );
         const rank = sortedLeaderboard.findIndex(
-          (entry) => entry.userName === user?.name
+          (entry) => entry.userName === userName
         );
         setUserRank(rank + 1); 
 
@@ -61,10 +75,11 @@ function Profile() {
       }
     };
 
-    if (user?._id) {
-      fetchUserData();
-    }
-  }, [user]);
+    // if (user?._id) {
+    //   fetchUserData();
+    // }
+    fetchUserData()
+  }, []);
 
   if (loading) {
     return (

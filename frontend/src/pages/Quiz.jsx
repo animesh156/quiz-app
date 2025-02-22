@@ -2,8 +2,7 @@
 import  { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Result from '../components/Result'
-
-import axios from 'axios';
+import API from '../utils/api'
 
 
 
@@ -19,14 +18,14 @@ const Quiz = () => {
   const difficulty = useSelector((state) => state.quizOptions.difficulty);
   const totalQuestion = useSelector((state) => state.quizOptions.totalQuestion);
   const type = useSelector((state) => state.quizOptions.type);
-  const { user } = useSelector((state) => state.auth);
+  
 
 
   
 
   
-  const userid = user._id
-  const username = user.name
+  const userid = localStorage.getItem("userId") || null
+  const username = localStorage.getItem("userName") || "guest"
 
 
  
@@ -42,7 +41,7 @@ const Quiz = () => {
     console.log(category)
     const getQuizData = async () => {
       try {
-        const response =  await axios.get(`https://quiz-app-backend-black.vercel.app/quiz?amount=${totalQuestion}&category=${category}&difficulty=${difficulty}&type=${type}`, {
+        const response =  await API.get(`/quiz?amount=${totalQuestion}&category=${category}&difficulty=${difficulty}&type=${type}`, {
          
         })
         if(!response.data) throw new Error('client error')
@@ -152,7 +151,7 @@ const Quiz = () => {
 
 const setUserScore = async(score) => {
   try {
-    const res = await axios.post('https://quiz-app-backend-black.vercel.app/score', {score,userid,username})
+    const res = await API.post('/score', {score,userid,username})
    
       if(res.data) return true
    } catch (error) {

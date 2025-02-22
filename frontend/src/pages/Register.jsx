@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import API from '../utils/api'
+import {  useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 
-import { register, reset } from '../features/auth/authSlice';
 
 
 function Register() {
@@ -14,38 +13,16 @@ function Register() {
     avatar: '',
   });
 
+  const navigate = useNavigate()
+
   const [showAvatars, setShowAvatars] = useState(false); // Toggle for avatar selection
 
   const { name, email, password, avatar } = formData;
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
 
-  useEffect(() => {
-    if (isError) {
-      
-      toast.error('User already exist');
-      dispatch(reset());
-    }
 
-    if (isSuccess || user) {
-      toast.success('Registered successfully')
-      setTimeout(() => {
-        navigate('/dashboard');
-        dispatch(reset());
-      },1000)
-      
-    }
-
-    
-
-    
-  }, [user, isError, isSuccess, message, navigate,dispatch]);
-
+  
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -58,26 +35,62 @@ function Register() {
     setShowAvatars(false); // Hide the avatar selection
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
-    const userData = {
-      name,
-      email,
-      password,
-      avatar,
-    };
+    try {
 
-    dispatch(register(userData));
-  };
+      const userData = {
+        name,
+        email,
+        password,
+        avatar,
+      };
+  
+      const response = await API.post(
+        '/user/register',
+        userData,
+        {withCredentials: true}
+      )
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-96">
-        <div className="loader border-t-4 border-blue-500 border-solid rounded-full w-16 h-16 animate-spin"></div>
-      </div>
-    )
-  }
+      if(response.status === 201){
+        toast.success("registered successfully", {
+          position: "top-center",
+          autoClose: 3000
+        })
+
+        localStorage.setItem("isAuthenticated", "true");
+        localStorage.setItem("avatar", response.data.avatar);
+        localStorage.setItem("userName", response.data.name);
+        localStorage.setItem("userId", response.data._id)
+        setTimeout(() => {
+          navigate("/dashboard")
+        },2000)
+
+      }
+      
+    } catch (error) {
+      if (error.response?.status === 400) {
+        toast.error("Email is already registered", {
+          position: "top-center",
+          autoClose: 4000,
+        });
+      } else {
+        toast.error("Registration failed. Please try again.", {
+          position: "top-center",
+          autoClose: 4000,
+        });
+      }
+      console.error("Registration error:", error);
+    }
+    }
+
+    
+
+   
+  
+
+
 
   return (
     <div
@@ -167,12 +180,12 @@ function Register() {
           <div>
             <p className="font-medium text-1xl  mt-3">
               Already have an account?{' '}
-              <Link
-                to="/login"
+              <button
+               onClick={() => navigate('/login')}
                 className="text-red-500 hover:text-red-600 font-extrabold"
               >
                 Log In
-              </Link>
+              </button>
             </p>
           </div>
         </form>
