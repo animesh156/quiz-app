@@ -15,8 +15,7 @@ connectDB();
 
 app.use(
   cors({
-    // origin:"https://quiz-app-frontend-blush.vercel.app",
-    origin:"http://localhost:5173",
+    origin: "https://quiz-app-frontend-blush.vercel.app",
     credentials: true,
   })
 );
