@@ -2,13 +2,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import API from "../utils/api";
-
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -29,8 +31,8 @@ function Login() {
         });
         localStorage.setItem("isAuthenticated", "true");
         localStorage.setItem("avatar", loginResponse.data.avatar);
-        localStorage.setItem("userName", loginResponse.data.name); 
-        localStorage.setItem("userId", loginResponse.data._id); 
+        localStorage.setItem("userName", loginResponse.data.name);
+        localStorage.setItem("userId", loginResponse.data._id);
 
         setTimeout(() => {
           navigate("/dashboard");
@@ -51,63 +53,70 @@ function Login() {
   };
 
   return (
-    <div
-      className="h-screen  bg-cover bg-center flex items-center justify-center log"
-      style={{ backgroundImage: "url('/bg.jpg')" }}
-    >
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 px-4">
       <ToastContainer />
 
-      <section className=" mx-auto  border border-gray-300 shadow-md backdrop-blur-sm  md:w-96  w-64 px-4 py-4 text-center  rounded-3xl">
-        <form onSubmit={onSubmit} className="py-5 mt-6">
+      <section className="w-full max-w-md p-8 bg-white/20 backdrop-blur-lg rounded-2xl shadow-xl border border-white/30">
+        <h1 className="text-3xl font-extrabold text-center text-white mb-6">
+          Welcome Back 👋
+        </h1>
+
+        <form onSubmit={onSubmit} className="space-y-6">
+          {/* Email */}
           <div>
             <input
               type="email"
-              className="py-2.5 px-3 border-2 border-gray-400  focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-xl md:w-80    caret-yellow-500 text-rose-500 mb-8"
               id="email"
               name="email"
               value={formData.email}
-              placeholder="Enter your email"
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
+              placeholder="Enter your email"
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-300 text-white placeholder-gray-400 outline-none transition"
             />
           </div>
 
-          <div>
+          {/* Password */}
+          <div className="relative w-full mb-6">
             <input
-              type="password"
-              className="py-2.5 px-3 border-2 border-gray-400 rounded-xl focus:outline-none focus:ring-2 md:w-80 focus:ring-gray-500  caret-rose-500 text-rose-500 mb-8"
+              type={showPassword ? "text" : "password"}
               id="password"
               name="password"
               value={formData.password}
-              placeholder="Enter password"
               onChange={(e) =>
                 setFormData({ ...formData, password: e.target.value })
               }
+              placeholder="Enter password"
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-300 text-white placeholder-gray-400 outline-none transition"
             />
-          </div>
-
-          <div>
-            <button
-              type="submit"
-              className="bg-sky-500 hover:bg-sky-600  md:w-40 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-bold rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-400 hover:text-gray-600"
             >
-              Login
-            </button>
+              {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+            </span>
           </div>
 
-          <div className="mt-4">
-            <p className="font-medium  text-1xl">
-              New User ?{" "}
-              <button
-               onClick={() => navigate('/register')}
-                className="text-red-500 font-extrabold hover:text-red-700 "
-              >
-                Sign Up
-              </button>
-            </p>
-          </div>
+          {/* Login Button */}
+          <button
+            type="submit"
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-sky-500 via-cyan-500 to-blue-500 text-white font-bold shadow-md hover:shadow-lg hover:scale-[1.02] transform transition-all duration-200"
+          >
+            Login
+          </button>
         </form>
+
+        {/* Register Link */}
+        <p className="text-center text-white mt-6">
+          New User?{" "}
+          <button
+            onClick={() => navigate("/register")}
+            className="font-bold text-yellow-300 hover:text-yellow-400 transition"
+          >
+            Sign Up
+          </button>
+        </p>
       </section>
     </div>
   );

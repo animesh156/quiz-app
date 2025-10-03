@@ -2,6 +2,7 @@ import { useState } from "react";
 import API from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -10,6 +11,8 @@ function Register() {
     password: "",
     avatar: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -75,59 +78,68 @@ function Register() {
   };
 
   return (
-    <div
-      className="h-screen w-full bg-cover bg-center flex items-center justify-center log"
-      style={{ backgroundImage: "url('/bg.jpg')" }}
-    >
+    <div className="min-h-screen w-full bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 flex items-center justify-center px-4">
       <ToastContainer />
-      <section className="mx-auto border border-gray-300  backdrop-blur-sm shadow-md w-80 md:w-96 px-4 py-4 text-center  rounded-3xl">
-        <form onSubmit={onSubmit}>
-          <div>
+
+      <section className="w-full max-w-md p-8 bg-white/20 backdrop-blur-lg rounded-2xl shadow-xl border border-white/30">
+        <h1 className="text-3xl font-extrabold text-center text-white mb-6">
+          Create Account ✨
+        </h1>
+
+        <form onSubmit={onSubmit} className="space-y-6">
+          {/* Name */}
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={name}
+            onChange={onChange}
+            placeholder="Enter your name"
+            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-300 text-white placeholder-gray-400 outline-none transition"
+          />
+
+          {/* Email */}
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={email}
+            onChange={onChange}
+            placeholder="Enter your email"
+            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-300 text-white placeholder-gray-400 outline-none transition"
+          />
+
+          {/* Password */}
+          <div className="relative w-full mb-6">
             <input
-              type="text"
-              className="py-2.5 px-3 border-2 border-gray-400  focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-xl md:w-80   caret-yellow-500 text-rose-500 mb-8"
-              id="name"
-              name="name"
-              value={name}
-              placeholder="Enter your name"
-              onChange={onChange}
-            />
-          </div>
-          <div>
-            <input
-              type="email"
-              className="py-2.5 px-3 border-2 border-gray-300  focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-xl md:w-80   caret-yellow-500 text-rose-500 mb-8"
-              id="email"
-              name="email"
-              value={email}
-              placeholder="Enter your email"
-              onChange={onChange}
-            />
-          </div>
-          <div>
-            <input
-              type="password"
-              className="py-2.5 px-3 border-2 border-gray-400  focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-xl md:w-80   caret-yellow-500 text-rose-500 mb-8"
+              type={showPassword ? "text" : "password"}
               id="password"
               name="password"
               value={password}
-              placeholder="Enter password"
               onChange={onChange}
+              placeholder="Enter password"
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-300 text-white placeholder-gray-400 outline-none transition pr-10"
             />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-400 hover:text-gray-600"
+            >
+              {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+            </span>
           </div>
 
           {/* Avatar selection */}
-          <div className="mb-4">
+          <div>
             <button
               type="button"
               onClick={() => setShowAvatars(!showAvatars)}
-              className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 shadow-lg shadow-lime-500/50 dark:shadow-lg dark:shadow-lime-800/80 font-bold rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+              className="w-full py-3 rounded-xl bg-gradient-to-r from-lime-400 to-green-500 text-white font-bold shadow-md hover:shadow-lg hover:scale-[1.02] transform transition-all duration-200"
             >
-              {avatar ? `Selected Avatar: ${avatar}` : "Select Avatar"}
+              {avatar ? `Selected Avatar: ${avatar}` : "Choose Avatar"}
             </button>
 
             {showAvatars && (
-              <div className="grid grid-cols-4 gap-4 mt-2">
+              <div className="grid grid-cols-4 gap-4 mt-4">
                 {[
                   "avatar1.png",
                   "avatar2.png",
@@ -136,15 +148,15 @@ function Register() {
                 ].map((img) => (
                   <div
                     key={img}
-                    className={`cursor-pointer border-2 rounded-lg p-1 ${
+                    className={`cursor-pointer border-2 rounded-lg p-1 hover:scale-110 transition ${
                       avatar === img ? "border-blue-500" : "border-gray-400"
                     }`}
                     onClick={() => selectAvatar(img)}
                   >
                     <img
-                      src={`/${img}`} // Ensure these avatars are stored in the public folder or accessible via your backend
+                      src={`/${img}`} // ensure in public/ folder
                       alt={img}
-                      className="w-12 h-12 object-cover rounded-md"
+                      className="w-14 h-14 object-cover rounded-lg"
                     />
                   </div>
                 ))}
@@ -152,27 +164,25 @@ function Register() {
             )}
           </div>
 
-          <div>
-            <button
-              type="submit"
-              className="bg-sky-500 hover:bg-sky-600  md:w-40 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-bold rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-            >
-              Sign Up
-            </button>
-          </div>
-
-          <div>
-            <p className="font-medium text-1xl  mt-3">
-              Already have an account?{" "}
-              <button
-                onClick={() => navigate("/login")}
-                className="text-red-500 hover:text-red-600 font-extrabold"
-              >
-                Log In
-              </button>
-            </p>
-          </div>
+          {/* Signup button */}
+          <button
+            type="submit"
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-sky-500 via-cyan-500 to-blue-500 text-white font-bold shadow-md hover:shadow-lg hover:scale-[1.02] transform transition-all duration-200"
+          >
+            Sign Up
+          </button>
         </form>
+
+        {/* Login redirect */}
+        <p className="text-center text-white mt-6">
+          Already have an account?{" "}
+          <button
+            onClick={() => navigate("/login")}
+            className="font-bold text-yellow-300 hover:text-yellow-400 transition"
+          >
+            Log In
+          </button>
+        </p>
       </section>
     </div>
   );
