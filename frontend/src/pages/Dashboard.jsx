@@ -1,23 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-
-import {
-  setCategory,
-  setDifficulty,
-  setTotalQuestions,
-  setType,
-} from "../features/quiz/quizSlice";
-
+import useQuizStore from "../store";
 import QuickQuiz from "../components/QuickQuiz";
 
 function Dashboard() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
+  const { setCategory, setDifficulty, setTotalQuestions, setType, category, difficulty, totalQuestion, type } =
+    useQuizStore();
 
   const [activeTab, setActiveTab] = useState("custom");
 
-  const userName = localStorage.getItem("userName") || "guest"
+  const userName = localStorage.getItem("userName") || "guest";
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -71,7 +65,8 @@ function Dashboard() {
             </label>
             <select
               id="small"
-              onChange={(e) => dispatch(setCategory(e.target.value))}
+              onChange={(e) => setCategory(e.target.value)}
+              value={category}
               className="block w-full p-2 mb-6 text-sm text-gray-900 border
             border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500
             focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600
@@ -94,7 +89,8 @@ function Dashboard() {
             </label>
             <select
               id="small"
-              onChange={(e) => dispatch(setDifficulty(e.target.value))}
+              onChange={(e) => setDifficulty(e.target.value)}
+              value={difficulty}
               className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
               <option value="easy">Easy</option>
@@ -111,7 +107,8 @@ function Dashboard() {
             </label>
             <select
               id="small"
-              onChange={(e) => dispatch(setTotalQuestions(e.target.value))}
+              onChange={(e) => setTotalQuestions(e.target.value)}
+              value={totalQuestion}
               className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
               <option value="5">5</option>
@@ -129,7 +126,8 @@ function Dashboard() {
             </label>
             <select
               id="small"
-              onChange={(e) => dispatch(setType(e.target.value))}
+              onChange={(e) => setType(e.target.value)}
+              value={type}
               className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
               <option value="multiple">Multiple Choice</option>

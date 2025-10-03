@@ -1,39 +1,35 @@
 import { quickQuizData } from "../utils/quickQuizData";
 import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
+import useQuizStore from "../store";
 import { useNavigate } from "react-router-dom";
-import {
- 
-  setCategory,
-  setDifficulty,
-  setTotalQuestions,
-  setType,
-} from "../features/quiz/quizSlice";
 
 function QuickQuiz() {
+  const { setCategory, setDifficulty, setTotalQuestions, setType } =
+    useQuizStore();
+
   const animationSettings = {
     initial: { x: -200, opacity: 0 }, // Start off-screen to the left and invisible
     animate: { x: 0, opacity: 1 }, // Move into view and become visible
     transition: { type: "spring", stiffness: 50 }, // Spring animation
   };
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleClick = (val) => {
-    dispatch(setCategory(val));
-    dispatch(setDifficulty("easy"));
-    dispatch(setType("multiple"));
-    dispatch(setTotalQuestions(5));
-    console.log(val)
-    
-    navigate("/quiz");
-    setTimeout(() => {
-      dispatch(setCategory(17));
-    },3000)
-    
+    // Set quiz options in one go
+    setCategory(val);
+    setDifficulty("easy");
+    setType("multiple");
+    setTotalQuestions(5);
 
-    
+    // console.log(val);
+
+    navigate("/quiz");
+
+    // Optional: reset category after 3s if really needed
+    setTimeout(() => {
+      setCategory("17");
+    }, 3000);
   };
 
   return (

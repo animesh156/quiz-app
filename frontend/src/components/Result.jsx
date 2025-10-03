@@ -5,18 +5,15 @@ import { ImSad } from "react-icons/im";
 import { useNavigate } from "react-router-dom";
 import Confetti from "react-confetti";
 
-
 const Result = ({ score, totalQuestions }) => {
-  
   const navigate = useNavigate();
 
-  const userName = localStorage.getItem("userName") || "guest"
+  const userName = localStorage.getItem("userName") || "guest";
 
-  
   return (
     <div className="text-center min-h-screen flex relative justify-center items-center mx-auto  flex-col overflow-hidden">
       {/* Confetti Effect for Every Score */}
-      
+
       {score === totalQuestions && (
         <Confetti
           width={window.innerWidth}
@@ -33,16 +30,12 @@ const Result = ({ score, totalQuestions }) => {
           <MdCelebration className="m-auto size-20 text-pink-600" />
         </div>
       ) : (
-       
-       
         <div>
           <p className="md:text-4xl text-xl -mt-5 mb-7 font-extrabold text-red-600">
             Better Luck Next Time, {userName}!
           </p>
           <ImSad className="m-auto size-20 text-red-500" />
         </div>
-       
-        
       )}
 
       <p className="text-3xl font-bold mt-12 dark:text-cyan-300">

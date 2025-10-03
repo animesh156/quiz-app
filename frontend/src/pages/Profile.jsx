@@ -1,62 +1,49 @@
 /* eslint-disable no-unused-vars */
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import API from '../utils/api'
+import API from "../utils/api";
 import { toast, ToastContainer } from "react-toastify";
 
 function Profile() {
- 
   const navigate = useNavigate();
-  
 
   const [userScore, setUserScore] = useState(null); // State to store user score
   const [leaderboard, setLeaderboard] = useState([]); // State to store leaderboard data
   const [userRank, setUserRank] = useState(null); // State to store user rank
   const [loading, setLoading] = useState(true); // State for loading
 
-  const onLogout = async() => {
-
+  const onLogout = async () => {
     try {
-   await API.post('user/logout', {},{withCredentials:true})
+      await API.post("user/logout", {}, { withCredentials: true });
       toast.success("Logged out successfully");
 
       localStorage.removeItem("isAuthenticated");
-     localStorage.removeItem("avatar")
+      localStorage.removeItem("avatar");
       localStorage.removeItem("userName");
 
       setTimeout(() => {
-      
         navigate("/login");
       }, 2000);
-      
     } catch (error) {
       toast.error("Logout failed. Please try again");
-     
-      console.log(error)
+
+      console.log(error);
     }
-   
   };
 
   // Extract `name` and `avatar` or set defaults
-  const userName =  localStorage.getItem("userName") || "Guest";
+  const userName = localStorage.getItem("userName") || "Guest";
   const avatar = localStorage.getItem("avatar") || "/default-avatar.png"; // Default avatar if none provided
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         // Fetch user score
-        const scoreResponse = await API.get(
-          `/score/?userName=${userName}`
-        );
+        const scoreResponse = await API.get(`/score/?userName=${userName}`);
         setUserScore(scoreResponse.data);
 
         // Fetch leaderboard data
-        const leaderboardResponse = await API.get(
-          `/leaderboard`
-        );
+        const leaderboardResponse = await API.get(`/leaderboard`);
         setLeaderboard(leaderboardResponse.data);
 
         // Determine user rank
@@ -66,7 +53,7 @@ function Profile() {
         const rank = sortedLeaderboard.findIndex(
           (entry) => entry.userName === userName
         );
-        setUserRank(rank + 1); 
+        setUserRank(rank + 1);
 
         setLoading(false);
       } catch (error) {
@@ -78,7 +65,7 @@ function Profile() {
     // if (user?._id) {
     //   fetchUserData();
     // }
-    fetchUserData()
+    fetchUserData();
   }, []);
 
   if (loading) {
@@ -104,7 +91,8 @@ function Profile() {
         {userScore ? (
           <>
             <p className="mt-4 text-lg md:text-3xl font-bold text-sky-500">
-              Current score: <span className="font-bold">{userScore.score}</span>
+              Current score:{" "}
+              <span className="font-bold">{userScore.score}</span>
             </p>
             {userRank ? (
               <p className="mt-2 text-lg md:text-3xl font-bold text-green-500">
