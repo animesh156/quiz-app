@@ -4,7 +4,15 @@ const Score = require("../model/scoreModel");
 
 const leaderBoard = asyncHandler(async (req, res) => {
   try {
-    const leaderBoardData = await Score.find().sort({ score: -1 }).limit(10);
+    const leaderBoardData = await Score.find()
+      .sort({ score: -1 })
+      .limit(10)
+      .select("-_id -user")
+      
+
+    if (!leaderBoardData.length) {
+      return res.status(200).json([]);
+    }
 
     res.status(200).json(leaderBoardData);
   } catch (error) {
