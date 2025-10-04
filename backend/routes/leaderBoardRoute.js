@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const { leaderBoard } = require("../controllers/leaderBoardController");
+const { protect } = require("../middleware/authMiddleware");
 
-router.get("/", leaderBoard);
+router.get("/", protect, leaderBoard);
 
 module.exports = router;
