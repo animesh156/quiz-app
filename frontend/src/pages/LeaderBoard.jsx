@@ -5,6 +5,7 @@ import { BorderBeam } from "@stianlarsen/border-beam";
 import {toast, ToastContainer} from 'react-toastify'
 
 
+
 function LeaderBoard() {
   const [userScores, setUserScores] = useState([]);
   const [isLoading, setLoading] = useState(false);
@@ -17,7 +18,7 @@ function LeaderBoard() {
       try {
         const response = await API.get(
           "/leaderboard",
-          {withCredentials: true}
+          {withCredentials: true} 
         );
 
         if (!response.data) toast.error("client error");

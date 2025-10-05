@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://quiz-app-backend-black.vercel.app",
+  baseURL: import.meta.env.VITE_BACKEND_URL,
+
   withCredentials: true,
 });
 

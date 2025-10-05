@@ -15,17 +15,17 @@ connectDB();
 
 app.use(
   cors({
-    origin: "https://quiz-app-frontend-blush.vercel.app",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
 
 app.use(express.json());
 app.use(cookieParser());
-app.use("/quiz", quizRoute);
-app.use("/user", userRoutes);
-app.use("/score", scoreRoute);
-app.use("/leaderboard", leaderBoardRoute);
+app.use("/api/quiz", quizRoute);
+app.use("/api/user", userRoutes);
+app.use("/api/score", scoreRoute);
+app.use("/api/leaderboard", leaderBoardRoute);
 app.listen(port, () => {
   console.log(`server started at ${port}`);
 });
