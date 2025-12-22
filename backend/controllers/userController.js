@@ -3,8 +3,9 @@ const bcrypt = require("bcryptjs")
 const jwt = require('jsonwebtoken')
 const User = require('../model/userModel')
 
-// Generate JWT
+const isProd = process.env.NODE_ENV === "production";
 
+// Generate JWT
 const generateToken = (res, userId) => {
     const token = jwt.sign({id: userId}, process.env.JWT_SECRET, {
         expiresIn: "7d"
@@ -14,8 +15,8 @@ const generateToken = (res, userId) => {
 
     res.cookie("jwt", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production", // Use secure cookies in production
-        sameSite: "lax",
+        secure: isProd, // Use secure cookies in production
+        sameSite: isProd ? "none" : "lax",
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     })
 }

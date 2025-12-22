@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  // baseURL: "https://quiz-app-gkz4.onrender.com/api",
-  baseURL: "https://quiz-app-gkz4.onrender.com/api",
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
 });
 
