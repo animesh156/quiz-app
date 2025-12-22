@@ -13,6 +13,8 @@ const addScore = asyncHandler(async (req, res) => {
       { new: true, upsert: true } // Create a new entry if it doesn't exist
     );
 
+    await redisClient.del("leaderboard:top10");
+
     res.status(201).json({
       message: "Score updated successfully",
       score: updatedScore.score,
