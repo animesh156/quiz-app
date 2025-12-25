@@ -9,7 +9,7 @@ function Register() {
     name: "",
     email: "",
     password: "",
-    avatar: "",
+    avatar: "default_avatar.jpg",
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -40,7 +40,7 @@ function Register() {
         name,
         email,
         password,
-        avatar,
+        avatar: avatar || "default_avatar.jpg",
       };
 
       const response = await API.post("/user/register", userData, {
@@ -56,7 +56,6 @@ function Register() {
         localStorage.setItem("isAuthenticated", "true");
         localStorage.setItem("avatar", response.data.avatar);
         localStorage.setItem("userName", response.data.name);
-        localStorage.setItem("userId", response.data._id);
         setTimeout(() => {
           navigate("/dashboard");
         }, 2000);
@@ -95,7 +94,7 @@ function Register() {
             value={name}
             onChange={onChange}
             placeholder="Enter your name"
-            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-300 text-white placeholder-gray-400 outline-none transition"
+            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-300 placeholder-gray-400 outline-none transition"
           />
 
           {/* Email */}
@@ -106,7 +105,7 @@ function Register() {
             value={email}
             onChange={onChange}
             placeholder="Enter your email"
-            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-300 text-white placeholder-gray-400 outline-none transition"
+            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-300  placeholder-gray-400 outline-none transition"
           />
 
           {/* Password */}
@@ -118,7 +117,7 @@ function Register() {
               value={password}
               onChange={onChange}
               placeholder="Enter password"
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-300 text-white placeholder-gray-400 outline-none transition pr-10"
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-300  placeholder-gray-400 outline-none transition pr-10"
             />
             <span
               onClick={() => setShowPassword(!showPassword)}

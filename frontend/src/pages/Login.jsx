@@ -32,7 +32,6 @@ function Login() {
         localStorage.setItem("isAuthenticated", "true");
         localStorage.setItem("avatar", loginResponse.data.avatar);
         localStorage.setItem("userName", loginResponse.data.name);
-        localStorage.setItem("userId", loginResponse.data._id);
 
         setTimeout(() => {
           navigate("/dashboard");
@@ -73,7 +72,7 @@ function Login() {
                 setFormData({ ...formData, email: e.target.value })
               }
               placeholder="Enter your email"
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-300 text-white placeholder-gray-400 outline-none transition"
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-300  placeholder-gray-400 outline-none transition"
             />
           </div>
 
@@ -88,7 +87,7 @@ function Login() {
                 setFormData({ ...formData, password: e.target.value })
               }
               placeholder="Enter password"
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-300 text-white placeholder-gray-400 outline-none transition"
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-300 placeholder-gray-400 outline-none transition"
             />
             <span
               onClick={() => setShowPassword(!showPassword)}
